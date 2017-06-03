@@ -2,6 +2,7 @@
 package getchar
 
 import "github.com/pkg/term"
+import "fmt"
 
 // Returns either an ascii code, or (if input is an arrow) a Javascript key code.
 func GetChar() (ascii int, keyCode int, err error) {
@@ -11,9 +12,11 @@ func GetChar() (ascii int, keyCode int, err error) {
 
 	var numRead int
 	numRead, err = t.Read(bytes)
+        fmt.Println("numRead: %i", numRead)	
 	if err != nil {
 		return
 	}
+	fmt.Println("numRead: %i", numRead)
 	if numRead == 3 && bytes[0] == 27 && bytes[1] == 91 {
 		// Three-character control sequence, beginning with "ESC-[".
 
